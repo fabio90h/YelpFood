@@ -7,6 +7,7 @@ const ResultList = ({ title, result }) => {
 		<View>
 			<Text style={stlyes.titleStyle}>{title}</Text>
 			<FlatList
+				showsHorizontalScrollIndicator={false}
 				horizontal
 				data={result}
 				keyExtractor={(current) => current.id}
@@ -14,7 +15,6 @@ const ResultList = ({ title, result }) => {
 					return <ResultsDetail result={item} />;
 				}}
 			/>
-			<Text>Amount: {result.length}</Text>
 		</View>
 	);
 };
@@ -22,6 +22,9 @@ const ResultList = ({ title, result }) => {
 const stlyes = StyleSheet.create({
 	titleStyle: {
 		fontWeight: "bold",
+		fontSize: 20,
+		marginLeft: 15,
+		marginBottom: 8,
 	},
 });
 
