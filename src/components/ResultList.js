@@ -6,6 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 const ResultList = ({ title, result }) => {
 	const navigation = useNavigation();
 
+	if (result.length === 0) return null;
+
 	return (
 		<View>
 			<Text style={stlyes.titleStyle}>{title}</Text>
