@@ -14,6 +14,7 @@ const SearchBar = ({ onSearchTermChange, searchTerm, onEndEditing }) => {
 				value={searchTerm}
 				autoCapitalize="none"
 				autoCorrect={false}
+				clearButtonMode="while-editing"
 			/>
 		</View>
 	);
