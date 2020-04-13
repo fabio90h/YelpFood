@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import { Text, StyleSheet, View, Image, FlatList } from "react-native";
 import useGetBusiness from "../hooks/useGetBusiness";
 
 const ResultsShowScreen = ({ route }) => {
@@ -9,21 +9,35 @@ const ResultsShowScreen = ({ route }) => {
 		getBusiness(route.params.id);
 	}, []);
 
+	if (!result) return null;
+
 	return (
 		<View>
-			{result &&
-				result.photos.map((src, index) => {
-					console.log(src);
-					return <Image style={styles.imageStyle} key={index} source={{ uri: src }} />;
-				})}
+			<Text style={styles.titleStyle}>{result.name}</Text>
+			<FlatList
+				horizontal
+				showsHorizontalScrollIndicator={false}
+				keyExtractor={(current) => current}
+				data={result.photos}
+				renderItem={({ item }) => <Image style={styles.imageStyle} source={{ uri: item }} />}
+			/>
+			<Text>Rating: {result.rating}</Text>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
+	titleStyle: {
+		fontWeight: "bold",
+		fontSize: 18,
+		marginLeft: 15,
+		marginBottom: 10,
+	},
 	imageStyle: {
-		height: 200,
+		height: 160,
 		width: 200,
+		marginLeft: 15,
+		borderRadius: 5,
 	},
 });
 
